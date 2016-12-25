@@ -1,37 +1,23 @@
-var http = require("http"),
-    url = require("url"),
-    path = require("path"),
-    fs = require("fs"),
-    port = process.argv[2] || 3000;
+var express = require('express');
+var app = express();
 
-http.createServer(function(request, response) {
+// set the port of our application
+// process.env.PORT lets the port be set by Heroku
+var port = process.env.PORT || 8080;
 
-  var uri = url.parse(request.url).pathname
-    , filename = path.join(process.cwd(), uri);
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
-  fs.exists(filename, function(exists) {
-    if(!exists) {
-      response.writeHead(404, {"Content-Type": "text/plain"});
-      response.write("404 Not Found\n");
-      response.end();
-      return;
-    }
+// make express look in the public directory for assets (css/js/img)
+app.use(express.static(__dirname + '/public'));
 
-    if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+// set the home page route
+app.get('/', function(req, res) {
 
-    fs.readFile(filename, "binary", function(err, file) {
-      if(err) {        
-        response.writeHead(500, {"Content-Type": "text/plain"});
-        response.write(err + "\n");
-        response.end();
-        return;
-      }
+    // ejs render automatically looks in the views folder
+    res.render('index');
+});
 
-      response.writeHead(200);
-      response.write(file, "binary");
-      response.end();
-    });
-  });
-}).listen(parseInt(port, 10));
-
-console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
+app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
+});
