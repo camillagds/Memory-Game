@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '0.11'
+- '0.10'
+before_install:
+- npm install -g testacular
+- gem install watchr
+deploy:
+  provider: heroku
+  api_key:
+    secure: 17Qe+TsokuAvgDRa2kLs03QyA06Lu+PlWD87L5Tjr6rp8wtXEPmOUNj0YYKjw4KEYITYFe62y9+UKhPJ8Bze68RHa03BwRicCZkDW5aw9vfPYCyj0ENnIbV1R4BvPuLeM80LrljU75TYpw2mW8t4Q2Of2TBzkYAGX0m1x+1jyOGZsjRx7tvVu69psDXIfkGsWfcUn3zRmp6oyg+6FUU4h5hz/U31tcU/+Oow9gSv7BqxjkMKBGDVSBn5KZMidswD77BNu4gnAMjtsukTqX9Eo+pdq4OY7baPp75Il4D3BE7LaW0NS/jK3+SMruQOLxyYjUfd2jIuPoPH8mQxhc7UTQaVa1p7lB8xlkpjJqw5iy81xhs5H8pLfD7PeutzVCGf8ayXVxHXyN3q1qgWqkspBDSAR7rRZDmo5muowC1rovPbCW39RaGOjk0yzM3FAhuQIVjfHoVja7NytVkl3kSFfODX+pC0WA9qkBBoAUZv9jh3TbHaFt+bVYfFy88oBcXuaQJzcbCn1pPNumDMyNVJHOLXaNGpmkqzmJ30aMZzjljJeDn6aktU8U9B+gniy1ZS348ZlaStjMjXKgqjpDO1aZpRvhJvS0hZu7YLZspEZ8aFj7luBMdtB9dQpRDaiYSjl21ex6m9SsZI4TxlYbM48tz7vyIDOuQDrtBnpbsxLHg=
+  app: memory-game-lobinhaxd
+  on:
+    repo: camillagds/Memory-Game

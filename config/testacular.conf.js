@@ -1,8 +1,6 @@
 basePath = '../';
 
 files = [
-  JASMINE,
-  JASMINE_ADAPTER,
   'app/lib/angular/angular.js',
   'app/lib/angular/angular-*.js',
   'test/lib/angular/angular-mocks.js',
@@ -17,4 +15,12 @@ browsers = ['Chrome'];
 junitReporter = {
   outputFile: 'test_out/unit.xml',
   suite: 'unit'
+};
+
+module.exports = function(config) {
+  config.set({
+    basePath: '../..',
+    frameworks: ['jasmine'],
+    //...
+  });
 };

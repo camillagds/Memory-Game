@@ -1,6 +1,4 @@
 files = [
-  JASMINE,
-  JASMINE_ADAPTER,
   'app/lib/angular/angular.js',
   'app/js/app.js',
   'app/js/game.js',
