@@ -23,7 +23,7 @@
     "testacular": "^0.6.2"
   },
   "scripts": {
-    "test": "karma test/karma.conf",
+    "test": "karma start test/karma.conf",
     "start": "node web-server.js"
   },
   "repository": {
