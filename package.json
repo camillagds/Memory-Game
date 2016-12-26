@@ -19,10 +19,11 @@
     "karma-jasmine": "^1.1.0",
     "karma-junit-reporter": "^1.2.0",
     "karma-ng-scenario": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.2",
     "testacular": "^0.6.2"
   },
   "scripts": {
-    "test": "scripts/test.sh",
+    "test": "karma test/karma.conf",
     "start": "node web-server.js"
   },
   "repository": {
