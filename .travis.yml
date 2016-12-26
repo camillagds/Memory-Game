@@ -4,8 +4,9 @@ node_js:
   - '0.10'
 before_install:
   - sudo npm install -g karma-cli
-install:
-  - npm start
+scripts: {
+  "start": "node web-server.js",
+}
 deploy:
   provider: heroku
   api_key:

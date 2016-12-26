@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "fork of https://github.com/IgorMinar/Memory-Game",
   "main": "web-server.js",
-  "directories": {
-    "test": "test",
-    "app": "app"
-  },
   "dependencies": {
     "ejs": "~1.0.0",
     "express": "~4.9.8"
