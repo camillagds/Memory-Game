@@ -6,12 +6,12 @@ files = [
 
 autoWatch = false;
 
-browsers = ['Chrome'];
+browsers = ['Firefox'];
 
 singleRun = true;
 
 proxies = {
-  '/': 'http://localhost:8000/'
+  '/': 'http://localhost:8080/'
 };
 
 junitReporter = {
