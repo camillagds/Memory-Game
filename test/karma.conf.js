@@ -5,20 +5,21 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['ng-scenario','jasmine'],
+    frameworks: ['jasmine','ng-scenario'],
 
 
     // list of files / patterns to load in the browser
     files: [
         'app/lib/angular/angular.js',
+        'app/lib/angular/angular-*.js',
         'test/lib/angular/angular-mocks.js',
         'app/js/**/*.js',
-        'test/unit/*.js'
+        'test/unit/**/*.js'
     ],
 
 
@@ -40,7 +41,7 @@ module.exports = function(config) {
 
 
     // web server port
-    port: 9876,
+    port: 8080,
 
 
     // enable / disable colors in the output (reporters and logs)
@@ -60,6 +61,16 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
 
+    plugins : [
+            'karma-ng-scenario',
+            //'karma-junit-reporter',
+            //'karma-chrome-launcher',
+            'karma-firefox-launcher',
+            'karma-phantomjs-launcher',
+            'karma-jasmine',
+            'phantomjs'
+            ],    
+
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -67,6 +78,11 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    junitReporter : {
+        outputFile: 'test_out/e2e.xml',
+        suite: 'e2e'
+    }
   })
 }
