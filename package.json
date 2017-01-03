@@ -28,10 +28,6 @@
     "grunt-template-jasmine-requirejs": "^0.2.0",
     "gulp": "^3.9.0"
   },
-  "scripts": {
-    "start": "node web-server.js",
-    "test": "grunt jasmine"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/camillagds/Memory-Game.git"
