@@ -1,15 +1,38 @@
 language: node_js
 node_js:
-  - '0.11'
-  - '0.10'
-
+- '0.11'
+- '0.10'
+env:
+  global:
+  - secure: uughg97HKBYLzaZ6qdvQwdWZQujFwwKKIyGdHOGf6Cp+ZAybAyu3SrFAjBIEadVIAZLNeYeZ3oWasJ63+hgBDfH/pwsb/MYNAmWhe9fogN3RdT0/eveZnu+DBCU3XAH8UmzkCjQElNFJkIIBKVNK+7Wi8lW91q4+0XE/hUTzz7l7i6H3D2XxLeI40ENePSAYCOL1LTpMNQzJJFFdqgygwXJDx9cDuhMOea+PgBTO5K4OTP0cXPiZu7Ni+3Af6l7P1jMt79isnEagL0s08IRlVu1G0aSReHeNGx8Yzpa5kPi+xJcrrNY84n/BfnCy9dBfuKpjm1yEu/0ZbdVSxdxRW1l38yfn77R2NJWz3WcF3XtKMthNpuhTXEApon3qhM9avarE5mzNFGCFahJ0Jydvs1dElg1Z020YZfsf/dY+TLKVN8LzmzV32X83z3z6FFpaFjd/9biPkIEFm6r+2jahcSTbvOpd04f3LyJWMhAcV4ExQg47BtDnhd7VYLAX6akJMFFEcFZi6DciHkCJ/c2be3x6x2s5s9tXBI0T8b6NpTvJ8JFSu7I0ow0zHm54yzfEKmUi6YGXeks8fxHZMNEz5UDKBEo+OgYGdxyVd1oEPYaMzyfE5DN5xsIqIzeJ/RSMKTa6kQ3TKdVLTEIa4V5r1V7sH3R0+a4f1dqbsSaAQ4I= #dockerhub
+  - secure: qJOE4dxXz2ipfQIorGu5btlYNq9itcwuMxQIpiQqnGjNQblpV8e1GoEzSi84NI8UQvpb9e1/h7vJ+Ovph1n2fSDsfVFpuCV0x++UOkZJ/+2LB26+KK1QxE7TYnv3TejKaPzIU1L+PoA6lWSUp4hYgheiBOCh+mYPiqfH8qT5wRgGXDCRrlHGwx0QBLN3dire0GVJj94hgOgpt4mGSDOg1XQRdLpIqYn43SEinhzvj+UOrbXiQwUDqnGTmFjTDMOxT4KJfAyYVKwSNDhCm1xXbQ17LZaWKZ4/tNGQaUQpyd7HgYjW53h2vfxcVVnPTvtfI+t+pVae1ESQMuePjZOQaCo2BSi8xIZyZLKnCXBqcBXLShDh9Dyx1xumF1EoPARLWrYSc/WAK1iF7W4pVwGyoi90kH7A+fDQ6zIHW83ePF4gP0zsesMcnw6Rj2PaH/qWxDWm+1EfUUtWXukwccmYh5sRICG+UV8+4nlpsfDePSSW2QjJKPUQOt65w4CH1by26uMg6mwsC1XcEYzWaSNCHKeWsCXghgvAIU25LUAVDzFiJxP2t2dJ8y8n2iUwumsMtiLhxXp024F3AqtWa9020IabBBXIOt1BA0F6HG9kvofe1aroZSM8YzkEzMJWOcbBTpl6G6PlmoGvHoLEpIkKTKkLGjLS8F2hjI73OrFefHs= #dockerhub
+  - secure: uPWk94yY/1WM72sPC9xVvYpWZ4eRu4FKZapu3SetmPRBV/pCpmWWFuALmWUqTYP1umQ5nJK0e+htqeUF0lhaHUUotbkT60o6pgrWaeFW4yyHMYUnKU740qFWPgMvxgGoK5u5nj5sOHp9VQr9RfXeBJwiGznztwdHG2aQfmy19UFRe8CnURuJzaEqpesvMiWtP4RtDwH7PoNxfPGzm6BFjvhKgOSokqX26HDjTcnv51pkSvadHhKYSzXf0C5IBNjze/4YE5QzTxlv/bBEGKtJGLwv7JuOhV2XXoKG5pzaVmex+JkOLw7lSex3AOKl5NbsiEO+nwVevOnQFpW74BWm3XqBDUl3KQW2FarBUPjmAxOHxum7fA1fDYzwIyedwjiKAi64SBtxe5A1zytF8fCRAYxZ5d8y0S5V0ZpfKwsJx1+/sI4boebFMw5P9rjkRXwQYmw4v6iyFJOSxUZ3VqSl9AKywDAqPfVZX/KUzs9qSyksePc3wTUHRFMzquC4Xz/XspYJhQXE8UnXtRkYedQ1i68dDQoVRkPjQvYbhJruc6m0mVgYMt8V+cs3efeIahqcSkHFtzHLcq/CBakbnMzWXnNacx7/Nn5c8SPaWSpsqCUdgCP7PCw6rnFeZ2J4T2hRC5Yc0AI2LvCS/9suhXt86piE+13Vb1ZwVZjYwtN75Pw= #dockerhub
+  - COMMIT=${TRAVIS_COMMIT::8} #dockerhub
+  - secure: JewIdnZycxQDEJDRyUTsc2XSqpvkc2f13+PTIBo1+vsmWdRhjgOvFvE04DKoQh31ljkxMzewlMZyzXJs17tL50De4g7+IRYzGzfYN/YBqgiy6D0iaIExhkXhbwsSgKSePbW8D4LpPHROl6Qcy7m28ST98ksHAs4P9Ch4oz3rb4nB/Pb2xOUQghw2B73n/roOGLj++4JJDvYBEtorEIkn3zi03TAjZ6upggW4q8Ra8SKbIUj1auPoxcio7H21hlwv5m/zc0/IC9LAHxGsQjq7kTUZkb6VuDcOIjshc2Ipi4yvhcLrYqBSkaWTrUcPATYhxKu27TYPRmbTzVzu8IShjBKMe8aEZeteYXLPFNvNFIM3SW2/PeolGCPn6k7l7E/GBEAheExOSFUYir/sn7u8kX558MQcvWePQoMuf2VXYrGU4LbU46EsVHaeXxu/DbIHsFG46crVkI2brG7trnuF98p/IlQ/nYJ+mWTuQiuI59svTHlpob2votbj03MRGVlm0kcc4jvA0SIftzCQQ3l1B8sPsyViOE1wCqfKrjVNnZz4KJSc0dDt/dxeNzbjoks0tegvNeqlndQLcxtkegkLseidiOMLVcwVJS6wZO6shbXYQtnXx6opyyDSkDuiJR5B74p0Mq+vWPeeSFstYrcpzljHmn0adJ2bTTIicjJljJA= #Coverity
+addons:
+  coverity_scan:
+    project:
+      name: camillagds/Memory-Game
+      description: Travis Pipeline Example
+    notification_email: milla@silverwolf.com.br
+    build_command_prepend: ''
+    build_command: node install
+    branch_pattern: coverity_scan
+    
 before_install:
-  - npm install karma-cli
+- npm install karma-cli
+- echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END
+  CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+install:
+- mkdir travis-phantomjs
+- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
+- export PATH=$PWD/travis-phantomjs:$PATH
+- npm install
 
-scripts: {
-  "start": "node web-server.js",
-}
-
+scripts:
+  start: node web-server.js
 deploy:
   provider: heroku
   api_key:
@@ -17,3 +40,11 @@ deploy:
   app: memory-game-lobinhaxd
   on:
     repo: camillagds/Memory-Game
+after_success:
+- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- export REPO=camillagds/memory-game
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+- docker build -f Dockerfile -t $REPO:$COMMIT .
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker push $REPO
