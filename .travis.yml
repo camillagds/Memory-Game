@@ -14,7 +14,6 @@ env:
   - secure: JewIdnZycxQDEJDRyUTsc2XSqpvkc2f13+PTIBo1+vsmWdRhjgOvFvE04DKoQh31ljkxMzewlMZyzXJs17tL50De4g7+IRYzGzfYN/YBqgiy6D0iaIExhkXhbwsSgKSePbW8D4LpPHROl6Qcy7m28ST98ksHAs4P9Ch4oz3rb4nB/Pb2xOUQghw2B73n/roOGLj++4JJDvYBEtorEIkn3zi03TAjZ6upggW4q8Ra8SKbIUj1auPoxcio7H21hlwv5m/zc0/IC9LAHxGsQjq7kTUZkb6VuDcOIjshc2Ipi4yvhcLrYqBSkaWTrUcPATYhxKu27TYPRmbTzVzu8IShjBKMe8aEZeteYXLPFNvNFIM3SW2/PeolGCPn6k7l7E/GBEAheExOSFUYir/sn7u8kX558MQcvWePQoMuf2VXYrGU4LbU46EsVHaeXxu/DbIHsFG46crVkI2brG7trnuF98p/IlQ/nYJ+mWTuQiuI59svTHlpob2votbj03MRGVlm0kcc4jvA0SIftzCQQ3l1B8sPsyViOE1wCqfKrjVNnZz4KJSc0dDt/dxeNzbjoks0tegvNeqlndQLcxtkegkLseidiOMLVcwVJS6wZO6shbXYQtnXx6opyyDSkDuiJR5B74p0Mq+vWPeeSFstYrcpzljHmn0adJ2bTTIicjJljJA= #Coverity
     
 before_install:
-- npm install karma-cli
 - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END
   CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
@@ -29,11 +28,6 @@ addons:
     branch_pattern: master
 
 install:
-- mkdir travis-phantomjs
-- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-- export PATH=$PWD/travis-phantomjs:$PATH
 - npm install
 
 scripts:
