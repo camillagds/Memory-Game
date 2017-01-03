@@ -2,6 +2,9 @@ language: node_js
 node_js:
 - '0.11'
 - '0.10'
+sudo: required
+services:
+  - docker
 env:
   global:
   - secure: uughg97HKBYLzaZ6qdvQwdWZQujFwwKKIyGdHOGf6Cp+ZAybAyu3SrFAjBIEadVIAZLNeYeZ3oWasJ63+hgBDfH/pwsb/MYNAmWhe9fogN3RdT0/eveZnu+DBCU3XAH8UmzkCjQElNFJkIIBKVNK+7Wi8lW91q4+0XE/hUTzz7l7i6H3D2XxLeI40ENePSAYCOL1LTpMNQzJJFFdqgygwXJDx9cDuhMOea+PgBTO5K4OTP0cXPiZu7Ni+3Af6l7P1jMt79isnEagL0s08IRlVu1G0aSReHeNGx8Yzpa5kPi+xJcrrNY84n/BfnCy9dBfuKpjm1yEu/0ZbdVSxdxRW1l38yfn77R2NJWz3WcF3XtKMthNpuhTXEApon3qhM9avarE5mzNFGCFahJ0Jydvs1dElg1Z020YZfsf/dY+TLKVN8LzmzV32X83z3z6FFpaFjd/9biPkIEFm6r+2jahcSTbvOpd04f3LyJWMhAcV4ExQg47BtDnhd7VYLAX6akJMFFEcFZi6DciHkCJ/c2be3x6x2s5s9tXBI0T8b6NpTvJ8JFSu7I0ow0zHm54yzfEKmUi6YGXeks8fxHZMNEz5UDKBEo+OgYGdxyVd1oEPYaMzyfE5DN5xsIqIzeJ/RSMKTa6kQ3TKdVLTEIa4V5r1V7sH3R0+a4f1dqbsSaAQ4I= #dockerhub
