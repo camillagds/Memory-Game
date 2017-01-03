@@ -12,6 +12,12 @@ env:
   - secure: uPWk94yY/1WM72sPC9xVvYpWZ4eRu4FKZapu3SetmPRBV/pCpmWWFuALmWUqTYP1umQ5nJK0e+htqeUF0lhaHUUotbkT60o6pgrWaeFW4yyHMYUnKU740qFWPgMvxgGoK5u5nj5sOHp9VQr9RfXeBJwiGznztwdHG2aQfmy19UFRe8CnURuJzaEqpesvMiWtP4RtDwH7PoNxfPGzm6BFjvhKgOSokqX26HDjTcnv51pkSvadHhKYSzXf0C5IBNjze/4YE5QzTxlv/bBEGKtJGLwv7JuOhV2XXoKG5pzaVmex+JkOLw7lSex3AOKl5NbsiEO+nwVevOnQFpW74BWm3XqBDUl3KQW2FarBUPjmAxOHxum7fA1fDYzwIyedwjiKAi64SBtxe5A1zytF8fCRAYxZ5d8y0S5V0ZpfKwsJx1+/sI4boebFMw5P9rjkRXwQYmw4v6iyFJOSxUZ3VqSl9AKywDAqPfVZX/KUzs9qSyksePc3wTUHRFMzquC4Xz/XspYJhQXE8UnXtRkYedQ1i68dDQoVRkPjQvYbhJruc6m0mVgYMt8V+cs3efeIahqcSkHFtzHLcq/CBakbnMzWXnNacx7/Nn5c8SPaWSpsqCUdgCP7PCw6rnFeZ2J4T2hRC5Yc0AI2LvCS/9suhXt86piE+13Vb1ZwVZjYwtN75Pw= #dockerhub
   - COMMIT=${TRAVIS_COMMIT::8} #dockerhub
   - secure: JewIdnZycxQDEJDRyUTsc2XSqpvkc2f13+PTIBo1+vsmWdRhjgOvFvE04DKoQh31ljkxMzewlMZyzXJs17tL50De4g7+IRYzGzfYN/YBqgiy6D0iaIExhkXhbwsSgKSePbW8D4LpPHROl6Qcy7m28ST98ksHAs4P9Ch4oz3rb4nB/Pb2xOUQghw2B73n/roOGLj++4JJDvYBEtorEIkn3zi03TAjZ6upggW4q8Ra8SKbIUj1auPoxcio7H21hlwv5m/zc0/IC9LAHxGsQjq7kTUZkb6VuDcOIjshc2Ipi4yvhcLrYqBSkaWTrUcPATYhxKu27TYPRmbTzVzu8IShjBKMe8aEZeteYXLPFNvNFIM3SW2/PeolGCPn6k7l7E/GBEAheExOSFUYir/sn7u8kX558MQcvWePQoMuf2VXYrGU4LbU46EsVHaeXxu/DbIHsFG46crVkI2brG7trnuF98p/IlQ/nYJ+mWTuQiuI59svTHlpob2votbj03MRGVlm0kcc4jvA0SIftzCQQ3l1B8sPsyViOE1wCqfKrjVNnZz4KJSc0dDt/dxeNzbjoks0tegvNeqlndQLcxtkegkLseidiOMLVcwVJS6wZO6shbXYQtnXx6opyyDSkDuiJR5B74p0Mq+vWPeeSFstYrcpzljHmn0adJ2bTTIicjJljJA= #Coverity
+    
+before_install:
+- npm install karma-cli
+- echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END
+  CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
 addons:
   coverity_scan:
     project:
@@ -20,12 +26,8 @@ addons:
     notification_email: milla@silverwolf.com.br
     build_command_prepend: ''
     build_command: node install
-    branch_pattern: coverity_scan
-    
-before_install:
-- npm install karma-cli
-- echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END
-  CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+    branch_pattern: master
+
 install:
 - mkdir travis-phantomjs
 - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
