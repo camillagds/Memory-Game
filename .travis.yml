@@ -23,11 +23,11 @@ install:
   - npm install
 
 script:
-  - docker run -d --name app -p 80:8080 $REPO:$COMMIT 
+  - docker run -d --name app $REPO:$COMMIT 
   - sleep 5 && docker ps -a | grep app
-  - curl -l http://127.0.0.1
+  - curl -l http://127.0.0.1:8080
   - docker exec app python -m unittest discover
-  - docker exec sh test_app.sh
+  - docker exec app sh test_app.sh
 
 
 after_script:
