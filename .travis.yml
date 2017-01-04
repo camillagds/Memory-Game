@@ -25,7 +25,8 @@ install:
 
 script:
   - docker run -d --name app $REPO:$COMMIT
-  - sleep 5 && docker ps -a | grep app
+  - sleep 5 && docker ps -a
+  - curl -l http://127.0.0.1
   - docker exec app python -m unittest discover
 
 after_script:
