@@ -11,6 +11,8 @@ matrix:
     env: AMBIENTE=heroku
   - node_js: '6.1'
     env: AMBIENTE=heroku
+  allow_failures:
+  - os: osx
 branches:
   only:
   - master
