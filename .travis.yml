@@ -16,6 +16,8 @@ matrix:
     env: AMBIENTE=heroku
   allow_failures:
   - os: osx
+    node_js: '6.1'
+    env: AMBIENTE=local
 branches:
   only:
   - master
@@ -41,8 +43,8 @@ script:
   - docker run -d --name app -p 8080:8080 $REPO:$COMMIT
   - sleep 5 && docker ps -a | grep app
   - curl -l http://127.0.0.1:8080
-  - docker exec app chmod +x /usr/src/apptest_app.sh
-  - docker exec app /usr/src/apptest_app.sh
+  - docker exec app chmod +x /usr/src/app/test_app.sh
+  - docker exec app /usr/src/app/test_app.sh
 after_script:
   - docker rm -f app
 after_success:
