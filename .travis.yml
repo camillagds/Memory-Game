@@ -16,11 +16,7 @@ matrix:
 branches:
   only:
   - master
-  - stable
-before_install:
-  - docker build -f Dockerfile -t $REPO:$COMMIT .
-services:
-  - docker
+  - /^(?i:staging)-.*$/
 env:
   global:
   - secure: uughg97HKBYLzaZ6qdvQwdWZQujFwwKKIyGdHOGf6Cp+ZAybAyu3SrFAjBIEadVIAZLNeYeZ3oWasJ63+hgBDfH/pwsb/MYNAmWhe9fogN3RdT0/eveZnu+DBCU3XAH8UmzkCjQElNFJkIIBKVNK+7Wi8lW91q4+0XE/hUTzz7l7i6H3D2XxLeI40ENePSAYCOL1LTpMNQzJJFFdqgygwXJDx9cDuhMOea+PgBTO5K4OTP0cXPiZu7Ni+3Af6l7P1jMt79isnEagL0s08IRlVu1G0aSReHeNGx8Yzpa5kPi+xJcrrNY84n/BfnCy9dBfuKpjm1yEu/0ZbdVSxdxRW1l38yfn77R2NJWz3WcF3XtKMthNpuhTXEApon3qhM9avarE5mzNFGCFahJ0Jydvs1dElg1Z020YZfsf/dY+TLKVN8LzmzV32X83z3z6FFpaFjd/9biPkIEFm6r+2jahcSTbvOpd04f3LyJWMhAcV4ExQg47BtDnhd7VYLAX6akJMFFEcFZi6DciHkCJ/c2be3x6x2s5s9tXBI0T8b6NpTvJ8JFSu7I0ow0zHm54yzfEKmUi6YGXeks8fxHZMNEz5UDKBEo+OgYGdxyVd1oEPYaMzyfE5DN5xsIqIzeJ/RSMKTa6kQ3TKdVLTEIa4V5r1V7sH3R0+a4f1dqbsSaAQ4I=
@@ -30,6 +26,10 @@ env:
   - REPO=camillagds/memory-game
   - secure: Sqs9Luidh1NYsob3lDh23FSpyC84Dg6Q2eTVDSqKAL/WjR6x5gDksl46MsVRmDzmIH6ouFcr6jXEPszsbQJbRmZp/t9AbOd4J58XpCe89ag2gpJtduu01BpGnLmmgw7i81vuDx+cvjt3a5IyEIgbfwou8in7puWT+nNdb4roMlBP/C5E/Vo6p3+Fcn9rgwQCpZaolKO4iHAYlbcOFjU8tWaJDjySgAT0VOpcu9bXnll+hRz8aM8zxe39kw5QQfxZSV06w5F20+2X5McNBEeCICVuEkF7DhuaBwd44939T9HJ98VhlafaMDPAytLyPD41v5ytWLU13BcwoKywcwEYyraWcXpThZVgND6WtvWXBwbmWCPA7GuMXp2rEdpJB+x0a9r4b9ctqQRElNWqA1hbK2MrDf2Gz7pAD7/pimrde3KTJCCLqy2GTanBt/6cpeGm4/g+WqIbDNovXw+m4EVZap6vD637D49VD7Ru4y5o36WVaVeP/a3onhsKVMC/DMyfSJN0AekKvhV6+YBRHwm/3CiaihepdKZfAtD4zFfufpBCZncXnKKZpBBWRx4PR9PyVYZjmCvlw60olOLzL/RYvnMwZ/SgqA7xmypfihzeqnrWA1ZK4gXWd4mH/JID9Ld9IOeefvoAc5BFGzXVQqAglLZyAE4SWNTXSpsiBIeAmIw=
   - secure: Amia1Tvhi0RmYS27b6cJ23m8A/NJ6bSom0bMSVZEfbLLytUI4jMv0aNp8M4aFS8Dku+PKMvIbGVTXeSgTlWbjLWOVHGtbxfUpG6EGPzHDKlsmY5pNlmiXg6m1/iVflXpe6sh0SP6h5e1ChsxE2zlF/t0D6YzvTyMg2y68hqpSIwUtPEIyD5hQPlsEtyG2PD9H4l8qYFJqz7VvIMWzrK9obo17pzUfTKuK+NFuKY4HX5jtLfct/XV8pL+mGlaLBk+weXHNtzngw+luFBbksz8PXMZRCe/aGBB8Kafz7pXefQ+6WbRAHRjHdunYXbsEdN18Q+xVL7nIB29prPIiKEadc7M61zZYyiub1bPtZEOvQns9R40DJJtPN9jyRSI4kooiX/L4A87z9oH/KpCXfcpd1hYTqogbxVJJLUdbKo23AXsCybmqTEse60IAPuWLh5rwZCfKU0BP6dpl1+TL82pXgOJmqAw5pJWJhaxxQiviVUiFKjRdqOE4g9W7gH1eUNfWJIp/smEX5Ic3HwEBZ674OinkXMADonXC5hy0rAVWxlo1Og8wxJr5cxLH3FmR4jQjK9FRDL3cVLo3y/wBx7WAwmMGwHELS1hpeCfe2eOCau8qH0INf51l6xQgwPgIDsY4taDxMSFF8t2G3dQvnmmo/Y6t39iLmtSIj3dVpINoUs=
+before_install:
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+services:
+  - docker
 install:
   - npm install -g forever
   - npm install
@@ -48,7 +48,7 @@ after_success:
   - docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
-  - mkdir out && zip -r out/memory-game_$TRAVIS_BUILD_NUMBER.zip . -x .* .sh .yml Dockerfile
+  - mkdir out && zip -r out/memory-game-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip . -x .* .sh .yml node_modules Dockerfile
   - chmod +x set_tags.sh && ./set_tags.sh
   - export DEPLOY=SIM
 deploy:
@@ -62,6 +62,7 @@ deploy:
         repo: camillagds/Memory-Game
         condition: $AMBIENTE=heroku
         node: '6.1.0'
+        branch: master
   - provider: heroku
     skip_cleanup: true
     api_key:
@@ -72,14 +73,15 @@ deploy:
         repo: camillagds/Memory-Game
         condition: $AMBIENTE=heroku
         node: '6.0.0'
+        branch: stable
   - provider: releases
     skip_cleanup: true
     api_key: 
       secure: Xk6gST7HRN5u6LoYwv2IeVhd4yqjZ7vDJMB4IBns86AQfPBbZTfv8MXx1rzAGrckS901kuSwMy9rJP8XmiV0WhXxKost5aqHhGce0TZMxfZZwfLJnXIJ/0Yd9OjMWFcyge5w4uEKVTP3qXOCkmkmPzpgOLhRMyAgknA9lOHePcDo2loB0hsluallH/NiB9O38RcDbl/C9kf/AHi9CTELT605MnNr99DwkNBFpAa7tVP4611Pl42dXDe7mI6YSjxGHhQWoM+oxr9POoVfvbMRU6REtiNJxwokqIK6UbhQVQfHW/DVloe94yayYhIQ8MRqpMJXwiHgbDpRuxpyJB37J6lnVqXDublBhcVL9XjP+K0dbOKDtDiKY/iBZkJQ9Wb80FynzlV6rZIZ6DBZgHTz3R/jPokhti0jrBtM4aUoSu2Kb+Ak02CkNZ8EOUHqy+z0RMqUzTxobetISyqHkeyXlA11P39mKij8bwpbZiTdAWCPz9lhEWieHJn4kH9VNTl1WafEYSTe9vmqgNEf/B3rcwJiwKR9uCMyoKaJYTyD/4+Q4F7OQ7XRC8JyqERnUHDjEvsSkcqMcLKDDDIvfnBY7qMgQTSTv2/JbSK4C3DETpq2kgWbMXgjLjf2yaORygB6F4XHd8m7QqsD09gXOOJpvyVYTBGfH80O3DjOu1IMN5A=
-    file: "out/memory-game_$TRAVIS_BUILD_NUMBER.zip"
+    file: "out/memory-game-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip"
     on:
         repo: camillagds/Memory-Game
-        branch: stable
+        branch: $TRAVIS_BRANCH
         condition: $AMBIENTE=heroku
 
 after_deploy:
