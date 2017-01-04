@@ -39,44 +39,43 @@ after_script:
 - docker rm -f app
 after_success:
 - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH;
-  fi`
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
 - docker tag $REPO:$COMMIT $REPO:$TAG
 - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
 - docker push $REPO
-- mkdir out && zip -r /out/memory-game_$TRAVIS_BUILD_NUMBER.zip . -x .* .sh .yml Dockerfile
+- mkdir out && zip -r out/memory-game_$TRAVIS_BUILD_NUMBER.zip . -x .* .sh .yml Dockerfile
 - sh set_tags.sh
 - export DEPLOY=SIM
 deploy:
-  - provider: releases
-    skip_cleanup: true
-    api_key:
-    secure: Xk6gST7HRN5u6LoYwv2IeVhd4yqjZ7vDJMB4IBns86AQfPBbZTfv8MXx1rzAGrckS901kuSwMy9rJP8XmiV0WhXxKost5aqHhGce0TZMxfZZwfLJnXIJ/0Yd9OjMWFcyge5w4uEKVTP3qXOCkmkmPzpgOLhRMyAgknA9lOHePcDo2loB0hsluallH/NiB9O38RcDbl/C9kf/AHi9CTELT605MnNr99DwkNBFpAa7tVP4611Pl42dXDe7mI6YSjxGHhQWoM+oxr9POoVfvbMRU6REtiNJxwokqIK6UbhQVQfHW/DVloe94yayYhIQ8MRqpMJXwiHgbDpRuxpyJB37J6lnVqXDublBhcVL9XjP+K0dbOKDtDiKY/iBZkJQ9Wb80FynzlV6rZIZ6DBZgHTz3R/jPokhti0jrBtM4aUoSu2Kb+Ak02CkNZ8EOUHqy+z0RMqUzTxobetISyqHkeyXlA11P39mKij8bwpbZiTdAWCPz9lhEWieHJn4kH9VNTl1WafEYSTe9vmqgNEf/B3rcwJiwKR9uCMyoKaJYTyD/4+Q4F7OQ7XRC8JyqERnUHDjEvsSkcqMcLKDDDIvfnBY7qMgQTSTv2/JbSK4C3DETpq2kgWbMXgjLjf2yaORygB6F4XHd8m7QqsD09gXOOJpvyVYTBGfH80O3DjOu1IMN5A=
-    file: /out/memory-game_$TRAVIS_BUILD_NUMBER.zip
-    on:
-      repo: camillagds/Memory-Game
-      branch: stable
-      condition: "$AMBIENTE = heroku", "$DEPLOY = SIM"
   - provider: heroku
     skip_cleanup: true
     api_key:
-    secure: 17Qe+TsokuAvgDRa2kLs03QyA06Lu+PlWD87L5Tjr6rp8wtXEPmOUNj0YYKjw4KEYITYFe62y9+UKhPJ8Bze68RHa03BwRicCZkDW5aw9vfPYCyj0ENnIbV1R4BvPuLeM80LrljU75TYpw2mW8t4Q2Of2TBzkYAGX0m1x+1jyOGZsjRx7tvVu69psDXIfkGsWfcUn3zRmp6oyg+6FUU4h5hz/U31tcU/+Oow9gSv7BqxjkMKBGDVSBn5KZMidswD77BNu4gnAMjtsukTqX9Eo+pdq4OY7baPp75Il4D3BE7LaW0NS/jK3+SMruQOLxyYjUfd2jIuPoPH8mQxhc7UTQaVa1p7lB8xlkpjJqw5iy81xhs5H8pLfD7PeutzVCGf8ayXVxHXyN3q1qgWqkspBDSAR7rRZDmo5muowC1rovPbCW39RaGOjk0yzM3FAhuQIVjfHoVja7NytVkl3kSFfODX+pC0WA9qkBBoAUZv9jh3TbHaFt+bVYfFy88oBcXuaQJzcbCn1pPNumDMyNVJHOLXaNGpmkqzmJ30aMZzjljJeDn6aktU8U9B+gniy1ZS348ZlaStjMjXKgqjpDO1aZpRvhJvS0hZu7YLZspEZ8aFj7luBMdtB9dQpRDaiYSjl21ex6m9SsZI4TxlYbM48tz7vyIDOuQDrtBnpbsxLHg=
+      secure: 17Qe+TsokuAvgDRa2kLs03QyA06Lu+PlWD87L5Tjr6rp8wtXEPmOUNj0YYKjw4KEYITYFe62y9+UKhPJ8Bze68RHa03BwRicCZkDW5aw9vfPYCyj0ENnIbV1R4BvPuLeM80LrljU75TYpw2mW8t4Q2Of2TBzkYAGX0m1x+1jyOGZsjRx7tvVu69psDXIfkGsWfcUn3zRmp6oyg+6FUU4h5hz/U31tcU/+Oow9gSv7BqxjkMKBGDVSBn5KZMidswD77BNu4gnAMjtsukTqX9Eo+pdq4OY7baPp75Il4D3BE7LaW0NS/jK3+SMruQOLxyYjUfd2jIuPoPH8mQxhc7UTQaVa1p7lB8xlkpjJqw5iy81xhs5H8pLfD7PeutzVCGf8ayXVxHXyN3q1qgWqkspBDSAR7rRZDmo5muowC1rovPbCW39RaGOjk0yzM3FAhuQIVjfHoVja7NytVkl3kSFfODX+pC0WA9qkBBoAUZv9jh3TbHaFt+bVYfFy88oBcXuaQJzcbCn1pPNumDMyNVJHOLXaNGpmkqzmJ30aMZzjljJeDn6aktU8U9B+gniy1ZS348ZlaStjMjXKgqjpDO1aZpRvhJvS0hZu7YLZspEZ8aFj7luBMdtB9dQpRDaiYSjl21ex6m9SsZI4TxlYbM48tz7vyIDOuQDrtBnpbsxLHg=
     app: memory-game-staging-lobinhaxd
     on:
-      repo: camillagds/Memory-Game
-      branch: master
-      condition: "$AMBIENTE = heroku", "$DEPLOY = SIM"
-      node: '6.1'
+        repo: camillagds/Memory-Game
+        branch: master
+        condition: "$AMBIENTE = heroku"
+        node: '6.1'
   - provider: heroku
     skip_cleanup: true
     api_key:
-    secure: 17Qe+TsokuAvgDRa2kLs03QyA06Lu+PlWD87L5Tjr6rp8wtXEPmOUNj0YYKjw4KEYITYFe62y9+UKhPJ8Bze68RHa03BwRicCZkDW5aw9vfPYCyj0ENnIbV1R4BvPuLeM80LrljU75TYpw2mW8t4Q2Of2TBzkYAGX0m1x+1jyOGZsjRx7tvVu69psDXIfkGsWfcUn3zRmp6oyg+6FUU4h5hz/U31tcU/+Oow9gSv7BqxjkMKBGDVSBn5KZMidswD77BNu4gnAMjtsukTqX9Eo+pdq4OY7baPp75Il4D3BE7LaW0NS/jK3+SMruQOLxyYjUfd2jIuPoPH8mQxhc7UTQaVa1p7lB8xlkpjJqw5iy81xhs5H8pLfD7PeutzVCGf8ayXVxHXyN3q1qgWqkspBDSAR7rRZDmo5muowC1rovPbCW39RaGOjk0yzM3FAhuQIVjfHoVja7NytVkl3kSFfODX+pC0WA9qkBBoAUZv9jh3TbHaFt+bVYfFy88oBcXuaQJzcbCn1pPNumDMyNVJHOLXaNGpmkqzmJ30aMZzjljJeDn6aktU8U9B+gniy1ZS348ZlaStjMjXKgqjpDO1aZpRvhJvS0hZu7YLZspEZ8aFj7luBMdtB9dQpRDaiYSjl21ex6m9SsZI4TxlYbM48tz7vyIDOuQDrtBnpbsxLHg=
+      secure: 17Qe+TsokuAvgDRa2kLs03QyA06Lu+PlWD87L5Tjr6rp8wtXEPmOUNj0YYKjw4KEYITYFe62y9+UKhPJ8Bze68RHa03BwRicCZkDW5aw9vfPYCyj0ENnIbV1R4BvPuLeM80LrljU75TYpw2mW8t4Q2Of2TBzkYAGX0m1x+1jyOGZsjRx7tvVu69psDXIfkGsWfcUn3zRmp6oyg+6FUU4h5hz/U31tcU/+Oow9gSv7BqxjkMKBGDVSBn5KZMidswD77BNu4gnAMjtsukTqX9Eo+pdq4OY7baPp75Il4D3BE7LaW0NS/jK3+SMruQOLxyYjUfd2jIuPoPH8mQxhc7UTQaVa1p7lB8xlkpjJqw5iy81xhs5H8pLfD7PeutzVCGf8ayXVxHXyN3q1qgWqkspBDSAR7rRZDmo5muowC1rovPbCW39RaGOjk0yzM3FAhuQIVjfHoVja7NytVkl3kSFfODX+pC0WA9qkBBoAUZv9jh3TbHaFt+bVYfFy88oBcXuaQJzcbCn1pPNumDMyNVJHOLXaNGpmkqzmJ30aMZzjljJeDn6aktU8U9B+gniy1ZS348ZlaStjMjXKgqjpDO1aZpRvhJvS0hZu7YLZspEZ8aFj7luBMdtB9dQpRDaiYSjl21ex6m9SsZI4TxlYbM48tz7vyIDOuQDrtBnpbsxLHg=
     app: memory-game-lobinhaxd
     on:
-      repo: camillagds/Memory-Game
-      branch: stable
-      condition: "$AMBIENTE = heroku", "$DEPLOY = SIM"
-      node: '6.0'
+        repo: camillagds/Memory-Game
+        branch: stable
+        condition: "$AMBIENTE = heroku"
+        node: '6.0'
+  - provider: releases
+    skip_cleanup: true
+    api_key: 
+      secure: Xk6gST7HRN5u6LoYwv2IeVhd4yqjZ7vDJMB4IBns86AQfPBbZTfv8MXx1rzAGrckS901kuSwMy9rJP8XmiV0WhXxKost5aqHhGce0TZMxfZZwfLJnXIJ/0Yd9OjMWFcyge5w4uEKVTP3qXOCkmkmPzpgOLhRMyAgknA9lOHePcDo2loB0hsluallH/NiB9O38RcDbl/C9kf/AHi9CTELT605MnNr99DwkNBFpAa7tVP4611Pl42dXDe7mI6YSjxGHhQWoM+oxr9POoVfvbMRU6REtiNJxwokqIK6UbhQVQfHW/DVloe94yayYhIQ8MRqpMJXwiHgbDpRuxpyJB37J6lnVqXDublBhcVL9XjP+K0dbOKDtDiKY/iBZkJQ9Wb80FynzlV6rZIZ6DBZgHTz3R/jPokhti0jrBtM4aUoSu2Kb+Ak02CkNZ8EOUHqy+z0RMqUzTxobetISyqHkeyXlA11P39mKij8bwpbZiTdAWCPz9lhEWieHJn4kH9VNTl1WafEYSTe9vmqgNEf/B3rcwJiwKR9uCMyoKaJYTyD/4+Q4F7OQ7XRC8JyqERnUHDjEvsSkcqMcLKDDDIvfnBY7qMgQTSTv2/JbSK4C3DETpq2kgWbMXgjLjf2yaORygB6F4XHd8m7QqsD09gXOOJpvyVYTBGfH80O3DjOu1IMN5A=
+    file: "out/memory-game_$TRAVIS_BUILD_NUMBER.zip"
+    on:
+        repo: camillagds/Memory-Game
+        branch: stable
+        condition: "$AMBIENTE = ARRUMAR A CHAVE"
 
 after_deploy:
 - curl https://assertible.com/apis/$SERVICE_ID/run?api_token=$TOKEN
