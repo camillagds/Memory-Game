@@ -54,7 +54,7 @@ after_success:
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
   - mkdir out && zip -r out/memory-game_$TRAVIS_BUILD_NUMBER.zip . -x .* .sh .yml Dockerfile
-  - sh set_tags.sh
+  - chmod +x set_tags.sh && ./set_tags.sh
   - export DEPLOY=SIM
 deploy:
   - provider: heroku
@@ -64,7 +64,6 @@ deploy:
     app: memory-game-staging-lobinhaxd
     on:
         repo: camillagds/Memory-Game
-        branch: master
         condition: "$AMBIENTE = heroku"
         node: '6.1'
   - provider: heroku
@@ -74,7 +73,6 @@ deploy:
     app: memory-game-lobinhaxd
     on:
         repo: camillagds/Memory-Game
-        branch: stable
         condition: "$AMBIENTE = heroku"
         node: '6.0'
   - provider: releases
