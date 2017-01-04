@@ -1,6 +1,5 @@
 os:
   - linux
-  - osx
 dist: trusty
 sudo: required
 language: node_js
@@ -14,10 +13,6 @@ matrix:
     env: AMBIENTE=heroku
   - node_js: '6.1'
     env: AMBIENTE=heroku
-  allow_failures:
-  - os: osx
-    node_js: '6.1'
-    env: AMBIENTE=local
 branches:
   only:
   - master
