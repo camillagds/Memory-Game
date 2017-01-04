@@ -64,8 +64,8 @@ deploy:
     app: memory-game-staging-lobinhaxd
     on:
         repo: camillagds/Memory-Game
-        condition: "$AMBIENTE = heroku"
-        node: '6.1'
+        condition: $AMBIENTE=heroku
+        node: '6.1.x'
   - provider: heroku
     skip_cleanup: true
     api_key:
@@ -73,8 +73,8 @@ deploy:
     app: memory-game-lobinhaxd
     on:
         repo: camillagds/Memory-Game
-        condition: "$AMBIENTE = heroku"
-        node: '6.0'
+        condition: $AMBIENTE=heroku
+        node: '6.0.x'
   - provider: releases
     skip_cleanup: true
     api_key: 
@@ -83,7 +83,7 @@ deploy:
     on:
         repo: camillagds/Memory-Game
         branch: stable
-        condition: "$AMBIENTE = heroku"
+        condition: $AMBIENTE=heroku
 
 after_deploy:
   - curl https://assertible.com/apis/$SERVICE_ID/run?api_token=$TOKEN
