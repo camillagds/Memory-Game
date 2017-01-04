@@ -1,3 +1,6 @@
+os:
+  - linux
+  - osx
 dist: trusty
 sudo: required
 language: node_js
@@ -38,7 +41,8 @@ script:
   - docker run -d --name app -p 8080:8080 $REPO:$COMMIT
   - sleep 5 && docker ps -a | grep app
   - curl -l http://127.0.0.1:8080
-  - docker exec app sh test_app.sh
+  - docker exec app chmod +x /usr/src/apptest_app.sh
+  - docker exec app /usr/src/apptest_app.sh
 after_script:
   - docker rm -f app
 after_success:
