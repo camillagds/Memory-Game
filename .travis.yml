@@ -15,7 +15,7 @@ env:
   - COMMIT=${TRAVIS_COMMIT::8} #dockerhub
     
 before_install:
-  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker build -f Dockerfile -t $REPO/$COMMIT .
   - docker ps -a | grep app
 
 install:
