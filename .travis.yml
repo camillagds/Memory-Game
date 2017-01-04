@@ -23,9 +23,10 @@ install:
   - npm install -g forever
   - npm install
 
-scripts:
-  start: docker run -d --name app $REPO:$COMMIT
-  test: docker ps -a | grep app && docker exec app python -m unittest discover
+script:
+  - docker run -d --name app $REPO:$COMMIT
+  - sleep 5 && docker ps -a | grep app
+  - docker exec app python -m unittest discover
 
 after_script:
 - docker rm -f app
