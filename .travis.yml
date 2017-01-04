@@ -17,7 +17,6 @@ env:
     
 before_install:
   - docker build -f Dockerfile -t $REPO:$COMMIT .
-  - docker ps -a | grep app
 
 install:
   - npm install -g forever
@@ -25,7 +24,7 @@ install:
 
 script:
   - docker run -d --name app $REPO:$COMMIT
-  - sleep 5 && docker ps -a
+  - sleep 5 && docker ps -a | grep app
   - curl -l http://127.0.0.1
   - docker exec app python -m unittest discover
 
