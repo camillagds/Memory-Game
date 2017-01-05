@@ -32,8 +32,9 @@ before_install:
 services:
   - docker
 install:
-  - npm install -g forever
   - npm install
+  - npm install --only=dev
+  - npm test
   - docker run -d --name app -p 8080:8080 $REPO:$COMMIT
 before_script:
   - sleep 5 && docker ps -a | grep app
@@ -45,7 +46,7 @@ script:
   - docker-compose -p $REPO up -d nginx-proxy
   - docker-compose scale web=$SCALE
   - sleep 5
-  - sh test_curl.sh
+  - chmod +x test_curl.sh && sh test_curl.sh
 after_script:
   - docker rm -f $(docker ps -a -q)
 after_success:
@@ -54,7 +55,7 @@ after_success:
   - docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
-  - mkdir out && zip -r out/memory-game-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip . -x .* .sh .yml node_modules Dockerfile desenv-env
+  - mkdir out && zip -r out/memory-game-$TAG-$TRAVIS_BRANCH.zip . -x .* .sh .yml node_modules Dockerfile desenv-env
   - chmod +x set_tags.sh && ./set_tags.sh
 deploy:
   - provider: heroku
@@ -83,7 +84,7 @@ deploy:
     skip_cleanup: true
     api_key: 
       secure: Xk6gST7HRN5u6LoYwv2IeVhd4yqjZ7vDJMB4IBns86AQfPBbZTfv8MXx1rzAGrckS901kuSwMy9rJP8XmiV0WhXxKost5aqHhGce0TZMxfZZwfLJnXIJ/0Yd9OjMWFcyge5w4uEKVTP3qXOCkmkmPzpgOLhRMyAgknA9lOHePcDo2loB0hsluallH/NiB9O38RcDbl/C9kf/AHi9CTELT605MnNr99DwkNBFpAa7tVP4611Pl42dXDe7mI6YSjxGHhQWoM+oxr9POoVfvbMRU6REtiNJxwokqIK6UbhQVQfHW/DVloe94yayYhIQ8MRqpMJXwiHgbDpRuxpyJB37J6lnVqXDublBhcVL9XjP+K0dbOKDtDiKY/iBZkJQ9Wb80FynzlV6rZIZ6DBZgHTz3R/jPokhti0jrBtM4aUoSu2Kb+Ak02CkNZ8EOUHqy+z0RMqUzTxobetISyqHkeyXlA11P39mKij8bwpbZiTdAWCPz9lhEWieHJn4kH9VNTl1WafEYSTe9vmqgNEf/B3rcwJiwKR9uCMyoKaJYTyD/4+Q4F7OQ7XRC8JyqERnUHDjEvsSkcqMcLKDDDIvfnBY7qMgQTSTv2/JbSK4C3DETpq2kgWbMXgjLjf2yaORygB6F4XHd8m7QqsD09gXOOJpvyVYTBGfH80O3DjOu1IMN5A=
-    file: "out/memory-game-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip"
+    file: "out/memory-game-$TAG-$TRAVIS_BRANCH.zip"
     on:
         repo: camillagds/Memory-Game
         branch: $TRAVIS_BRANCH

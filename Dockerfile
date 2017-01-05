@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 RUN npm install
 
-COPY . /usr/src/app
+COPY ./app /usr/src/app
 
 EXPOSE 8080
 
