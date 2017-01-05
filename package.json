@@ -8,7 +8,7 @@
     "express": "~4.9.8"
   },
   "scripts": {
-    "test": "/node_modules/mocha/bin/mocha",
+    "test": "./node_modules/mocha/bin/mocha",
     "start": "node web-server.js"
   },
   "repository": {
