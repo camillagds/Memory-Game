@@ -48,8 +48,11 @@ before_script:
 script:
   - docker-compose up -d nginx-proxy
   - docker-compose scale web=$SCALE
-  - sleep 5
-  - chmod +x test_curl.sh && sh test_curl.sh
+  - chmod +x test_curl.sh
+  - ./test_curl.sh
+  - sleep 2
+  - ./test_curl.sh
+
 after_script:
   - docker rm -f $(docker ps -a -q)
 after_success:

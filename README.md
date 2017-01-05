@@ -11,7 +11,7 @@
 
 ##### Branches
 * master
-* staging-<versao>
+* staging-$versao
 
 ##### Variaveis
 * COMMIT = 8 primeiros numeros da variavel TRAVIS_COMMIT
