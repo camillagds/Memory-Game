@@ -9,6 +9,5 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
   web:
     image: $REPO
-    container_name: web
     environment:
       - VIRTUAL_HOST=web.local

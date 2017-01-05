@@ -44,10 +44,20 @@ O Assertible ajuda a evitar que bugs o tornem produtivo automatizando testes man
 
 ### [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) Heroku
 
-eroku é uma aplicação cloud multi-linguagem que funciona como um PaaS. Ele cuida de toda a infra estrutura e configuração de servidores, bastando que você faça somente o deploy e a aplicação já esteja rodando. 
+Heroku é uma aplicação cloud multi-linguagem que funciona como um PaaS. Ele cuida de toda a infra estrutura e configuração de servidores, bastando que você faça somente o deploy e a aplicação já esteja rodando. 
+
+#### Ambientes
 
 * https://memory-game-lobinhaxd.herokuapp.com
 * https://memory-game-staging-lobinhaxd.herokuapp.com
+
+### Desenvolvedores
+
+#### Windows
+
+#### OS X
+
+#### Linux
 
 #### Fork
 AngularJS example app that implements the famous memory game of finding matching pairs of cards.  Popular with toddlers everywhere!
