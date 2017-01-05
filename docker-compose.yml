@@ -10,4 +10,4 @@ services:
   web:
     image: $REPO
     environment:
-      - VIRTUAL_HOST=web.local
+      - VIRTUAL_HOST=memorygame.local
