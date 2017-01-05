@@ -1,6 +1,5 @@
-FROM node:argon
+FROM node:6.0.0-onbuild
 
-RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app
