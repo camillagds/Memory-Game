@@ -47,7 +47,7 @@ script:
   - sleep 5
   - sh test_curl.sh
 after_script:
-  - docker rm $(docker ps -a -q)
+  - docker rm -f $(docker ps -a -q)
 after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
