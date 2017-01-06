@@ -3,20 +3,21 @@
 
 ### [![Build Status](https://travis-ci.org/camillagds/Memory-Game.svg?branch=master)](https://travis-ci.org/camillagds/Memory-Game) Travis-CI 
 
-##### Ambientes
-* OS: Linux
-* Distro: Ubuntu Trusty
-* Linguagem: Node.js
-* Versões: 0.11, 5.11, 6.0, 6.1
+##### Ambiente
+* __OS:__ Linux
+* __Distro:__ Ubuntu Trusty
+* __Linguagem:__ Node.js
+* __Versões:__ 0.11, 5.11, 6.0, 6.1
 
 ##### Branches
 * master
 * staging-$versao
 
 ##### Variaveis
-* COMMIT = 8 primeiros numeros da variavel TRAVIS_COMMIT
-* REPO = Repositório do SVN
-* SCALE = Quantidade de Aplicacões
+* __COMMIT__ = 8 primeiros numeros da variavel TRAVIS_COMMIT
+* __REPO__ = Repositório do SVN
+* __SCALE__ = Quantidade de Aplicacões
+* __HOST__ = Nome do Host
 
 ##### Processos
 1. **Install** | Constrói a imagem do docker
@@ -46,24 +47,46 @@ O Assertible ajuda a evitar que bugs o tornem produtivo automatizando testes man
 
 Heroku é uma aplicação cloud multi-linguagem que funciona como um PaaS. Ele cuida de toda a infra estrutura e configuração de servidores, bastando que você faça somente o deploy e a aplicação já esteja rodando. 
 
-#### Ambientes
+* __Master:__ https://memory-game-lobinhaxd.herokuapp.com
+* __Staging:__ https://memory-game-staging-lobinhaxd.herokuapp.com
+* __SNAP-CI:__ https://memory-game-snap-lobinhaxd.herokuapp.com/
 
-* https://memory-game-lobinhaxd.herokuapp.com
-* https://memory-game-staging-lobinhaxd.herokuapp.com
-
-### Desenvolvedores
-
+## Ambiente para Desenvolvedores
+Abaixo esta os scripts para a instalação do docker para desenvolvimento.
 #### Windows
+https://github.com/camillagds/react-todomvc/blob/master/desenv-scripts/ms-desenv.ps1
 
+__*Atenção:*__
+Rodar com nível administrativo
+ [É necessário habilitar a virtualização no Hyper-V usando o PowerShell](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-venable-virtualization-in-hyper-v)
 #### OS X
-
+https://github.com/camillagds/react-todomvc/blob/master/desenv-scripts/osx-desenv.sh
+###### Atenção: 
+Rodar com nível administrativo
 #### Linux
+__CentOS__ - https://github.com/camillagds/react-todomvc/blob/master/desenv-scripts/centos-desenv.sh
+__Ubuntu__ - https://github.com/camillagds/react-todomvc/blob/master/desenv-scripts/ubuntu-desenv.sh
+### Docker
 
+Crie um arquivo `.env` com o conteudo:
+```
+REPO= <nome do repositorio>
+HOST= <nome do host>
+```
+Exemplo:
+```
+REPO=camillagds/memory-game
+HOST=memorygame.local
+```
+E rode os comandos abaixo:
+`$ docker-compose config`
+`$ docker-compose up -d nginx-proxy`
+`$ docker-compose scale web=2`
+
+-------
 #### Fork
 AngularJS example app that implements the famous memory game of finding matching pairs of cards.  Popular with toddlers everywhere!
 
-Forked from <https://github.com/IgorMinar/Memory-Game>
-
--------
+*Forked from* https://github.com/IgorMinar/Memory-Game
 Licence: MIT
 

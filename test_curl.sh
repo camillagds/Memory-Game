@@ -1,5 +1,5 @@
 #!/bin/bash
-max=10
+max=3
 for (( i=1; i <= $max; ++i ))
 do
     echo "Test $i"
