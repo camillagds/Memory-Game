@@ -10,9 +10,9 @@ matrix:
   - node_js: '5.11'
     env: AMBIENTE=local
   - node_js: '6.0.0'
-    env: AMBIENTE=heroku
+    env: AMBIENTE=stable
   - node_js: '6.1.0'
-    env: AMBIENTE=heroku
+    env: AMBIENTE=master
 branches:
   only:
   - master
@@ -56,8 +56,7 @@ script:
 after_script:
   - docker rm -f $(docker ps -a -q)
 after_success:
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
-  - mkdir out && zip -r out/memory-game-$TAG-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip . -x .* *.sh *.yml *.md node_modules Dockerfile desenv-scripts
+  - mkdir out && git archive --format=zip HEAD -o out/memory-game-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip
 
 deploy:
   - provider: heroku
@@ -68,8 +67,7 @@ deploy:
     app: memory-game-staging-lobinhaxd
     on:
         repo: camillagds/Memory-Game
-        condition: $AMBIENTE=heroku
-        node: '6.1.0'
+        condition: $AMBIENTE=master
         branch: master
   - provider: heroku
     skip_cleanup: true
@@ -79,14 +77,13 @@ deploy:
     app: memory-game-lobinhaxd
     on:
         repo: camillagds/Memory-Game
-        condition: $AMBIENTE=heroku
-        node: '6.0.0'
+        condition: $AMBIENTE=stable
         branch: stable-*
   - provider: releases
     skip_cleanup: true
     api_key: 
       secure: Xk6gST7HRN5u6LoYwv2IeVhd4yqjZ7vDJMB4IBns86AQfPBbZTfv8MXx1rzAGrckS901kuSwMy9rJP8XmiV0WhXxKost5aqHhGce0TZMxfZZwfLJnXIJ/0Yd9OjMWFcyge5w4uEKVTP3qXOCkmkmPzpgOLhRMyAgknA9lOHePcDo2loB0hsluallH/NiB9O38RcDbl/C9kf/AHi9CTELT605MnNr99DwkNBFpAa7tVP4611Pl42dXDe7mI6YSjxGHhQWoM+oxr9POoVfvbMRU6REtiNJxwokqIK6UbhQVQfHW/DVloe94yayYhIQ8MRqpMJXwiHgbDpRuxpyJB37J6lnVqXDublBhcVL9XjP+K0dbOKDtDiKY/iBZkJQ9Wb80FynzlV6rZIZ6DBZgHTz3R/jPokhti0jrBtM4aUoSu2Kb+Ak02CkNZ8EOUHqy+z0RMqUzTxobetISyqHkeyXlA11P39mKij8bwpbZiTdAWCPz9lhEWieHJn4kH9VNTl1WafEYSTe9vmqgNEf/B3rcwJiwKR9uCMyoKaJYTyD/4+Q4F7OQ7XRC8JyqERnUHDjEvsSkcqMcLKDDDIvfnBY7qMgQTSTv2/JbSK4C3DETpq2kgWbMXgjLjf2yaORygB6F4XHd8m7QqsD09gXOOJpvyVYTBGfH80O3DjOu1IMN5A=
-    file: "out/memory-game-$TAG-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip"
+    file: "out/memory-game-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH.zip"
     on:
         repo: camillagds/Memory-Game
         branch: $TRAVIS_BRANCH
