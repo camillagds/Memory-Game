@@ -78,7 +78,6 @@ deploy:
     on:
         repo: camillagds/Memory-Game
         condition: $AMBIENTE=stable
-        branch: stable-*
   - provider: releases
     skip_cleanup: true
     api_key: 
