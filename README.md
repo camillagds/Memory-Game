@@ -14,8 +14,7 @@
 * staging-$versao
 
 ##### Variaveis
-* __COMMIT__ = 8 primeiros numeros da variavel TRAVIS_COMMIT
-* __REPO__ = Repositório do SVN
+* __REPO__ = Repositório do GITHUB
 * __SCALE__ = Quantidade de Aplicacões
 * __HOST__ = Nome do Host
 
@@ -26,11 +25,10 @@
 4. **Test** | Testa a Aplicação
 5. **Build** | Executa o container da imagem do docker
 6. **Test** | Testa o container
-7. **Publish** | Publica a Imagem no Docker Hub
-8. **Publish** | Publica a aplicação como Release no GitHub
-9. **Deploy** | Instala a aplicação no Server de Staging
-10. **Deploy** | Instala a aplicação no Server de Produção
-11. **Test** | Valida o deploy usando o Assertible
+7. **Publish** | Publica a aplicação como Release no GitHub
+8. **Deploy** | Instala a aplicação no Server de Staging
+9. **Deploy** | Instala a aplicação no Server de Produção
+10. **Test** | Valida o deploy usando o Assertible
 
 ### [![Build Status](https://app.snap-ci.com/camillagds/Memory-Game/branch/master/build_image)](https://app.snap-ci.com/camillagds/Memory-Game/branch/master) Snap-CI
 
