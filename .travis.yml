@@ -9,9 +9,9 @@ matrix:
     env: AMBIENTE=local
   - node_js: '5.11'
     env: AMBIENTE=local
-  - node_js: '6.0.0'
+  - node_js: '6.0'
     env: AMBIENTE=stable
-  - node_js: '6.1.0'
+  - node_js: '6.1'
     env: AMBIENTE=master
 branches:
   only:
@@ -68,7 +68,6 @@ deploy:
     on:
         repo: camillagds/Memory-Game
         condition: $AMBIENTE=master
-        branch: master
   - provider: heroku
     skip_cleanup: true
     api_key:
