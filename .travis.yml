@@ -31,6 +31,8 @@ addons:
   hosts:
   - $HOST
 before_install:
+  - npm install nsp --global
+  - nsp check
   - docker build -f Dockerfile -t $REPO .
 services:
   - docker
